@@ -1,0 +1,29 @@
+---
+- name: Download file from GitHub
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    github_token: "{{ git_token }}"
+
+  tasks:
+    - name: Download file from github
+      uri:
+        url: "https://raw.githubusercontent.com/{{ repo_username }}/{{ repo_name }}/{{ repo_branch }}/{{ repo_file_path }}"
+        dest: "{{ save_file_path }}"
+        return_content: yes
+        headers:
+          Application: "application/vnd.github.raw"
+          Authorization: "Bearer {{ github_token }}"
+      register: download_result
+      no_log: true
+
+    - set_fact:
+        destination_file_path: "{{ save_file_path }}/{{ file_name }}"
+      no_log: true
+
+    - name: Check if download is successful
+      stat:
+        path: "{{ destination_file_path }}"
+      when: download_result is succeeded
+      no_log: true

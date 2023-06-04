@@ -1,0 +1,10 @@
+{
+    "github_token": "<github_token>",
+    "repo_username": "<repo_owner>",
+    "repo_name": "<repository_name>",
+    "repo_branch": "<branch_name| master |main | feature>",
+    "repo_file_path": "<path of the file in the repo>",
+    "file_name": "<name of the my file>",
+    "save_file_path": "<path where you wish to save the file>"
+    
+}
