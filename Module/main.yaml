@@ -1,0 +1,17 @@
+---
+- name: Download file from GitHub
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    github_token: "{{ git_token }}"
+
+  tasks:
+    - name: Download file from github
+      private_git_repo:
+        github_token: "{{ github_token }}"
+        repo_username: "{{ repo_username }}"
+        repo_name: "{{ repo_name }}"
+        repo_file_path: "{{ repo_file_path }}"
+        repo_branch: "{{  repo_branch }}"
+        save_file_path: "{{ save_file_path }}"
